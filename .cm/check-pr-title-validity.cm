@@ -1,0 +1,17 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  jira_ticket:
+    if:
+      - {{ not is.valid_title }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "invalid-pr-title"
+          color: 'F6443B'
+
+is:
+  valid_title: {{ pr.title | match(regex=r/^(feat|fix|docs|style|refactor|perf|test|chore|build)(\\([a-z-]{3,}\\))?!?:\\s?[a-zA-Z0-9-.]+( [a-zA-Z0-9_.]+)*\\s?(\\[[A-Z]+-+[0-9]+\\])*) }}
