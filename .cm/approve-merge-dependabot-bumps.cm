@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  dependabot-bump:
+    if:
+      - {{ is.bump and is.dependabot }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'dependabot-bump'
+      - action: approve@v1
+      # - action: merge@v1
+
+is:
+  bump: {{ pr.title | includes(term='bump') }}
+  dependabot: {{ pr.author | includes(regex=r/^PiStefania$/) }}

@@ -1,0 +1,14 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  close-huge-pr:
+    if:
+      - {{ branch | estimatedReviewTime >= 10 }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'huge-pr'
+      # - action: close@v1

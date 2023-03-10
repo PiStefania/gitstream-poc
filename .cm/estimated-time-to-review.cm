@@ -4,7 +4,7 @@ manifest:
   version: 1.0
 
 automations:
-  estimated_time_to_review:
+  estimated-time-to-review:
     if:
       - true
     run:
