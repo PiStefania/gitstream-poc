@@ -1,0 +1,17 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  infra_changes:
+    if:
+      - {{ is.docker_changes or is.config_changes }}
+    run:
+      - action: add-label@v1
+        args:
+          label: infra-changes
+
+is:
+    docker_changes: {{ files | match(term='Dockerfile') or match(term='docker-compose' | some }}
+    config_changes: {{ files | match(term='config/') | some }}

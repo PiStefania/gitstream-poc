@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  old_pr:
+    if:
+      - true
+    run:
+      - action: add-label@v1
+        args:
+          label: "{{ 'old-pr' if (calc.new_or_old >= 3) else 'new-pr' }}"
+
+calc:
+  new_or_old: {{ current_date - pr.title }}
+
+current_date: '`r format(Sys.time(), "%d %B, %Y")`'
