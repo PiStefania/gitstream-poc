@@ -1,0 +1,15 @@
+<!-- article_form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if article %}Update{% else %}Create{% endif %} Article</title>
+</head>
+<body>
+    <h1>{% if article %}Update{% else %}Create{% endif %} Article</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="{% if article %}Update{% else %}Create{% endif %}">
+    </form>
+</body>
+</html>
