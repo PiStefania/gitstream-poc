@@ -14,4 +14,4 @@ automations:
           color: 'F6443B'
 
 is:
-  valid_title: {{ pr.title | includes(regex=^(feat|fix|docs|style|refactor|perf|test|chore|build)(\\([a-z-]{3,}\\))?!?:\\s?[a-zA-Z0-9-.]+( [a-zA-Z0-9_.]+)*\\s?(\\[[A-Z]+-+[0-9]+\\])*) }}
+  valid_title: {{ pr.title | includes(regex=r/^\[?\w{3,4}-\d{1,6}\]?(\s|-|_).{20,}$/)) }}
