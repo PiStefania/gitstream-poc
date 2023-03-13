@@ -16,7 +16,4 @@ automations:
 
 is:
   bump: {{ pr.title | includes(term='bump') }}
-  dependabot: {{ dependabot_author | match(term=pr.title) | every }}
-
-dependabot_author:
-    - PiStefania
+  dependabot: {{ pr.title | includes(regex=/^PiStefania$/) }}
